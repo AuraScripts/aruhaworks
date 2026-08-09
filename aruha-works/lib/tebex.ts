@@ -34,6 +34,8 @@ export type TebexCategory = {
 };
 
 async function tebexFetch<T>(path: string, init?: RequestInit): Promise<T> {
+  const isGet = !init?.method || init.method === "GET";
+
   const res = await fetch(`${TEBEX_BASE}${path}`, {
     ...init,
     headers: {
@@ -41,8 +43,8 @@ async function tebexFetch<T>(path: string, init?: RequestInit): Promise<T> {
       Accept: "application/json",
       ...(init?.headers ?? {}),
     },
-    // Categories/packages change rarely — cache for a bit, revalidate in background.
-    next: { revalidate: 120 },
+    // Only cache read (GET) calls — never cache basket writes.
+    ...(isGet ? { next: { revalidate: 120 } } : { cache: "no-store" as const }),
   });
 
   if (!res.ok) {
