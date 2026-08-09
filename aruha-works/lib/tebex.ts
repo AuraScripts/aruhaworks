@@ -93,7 +93,7 @@ export async function createBasketWithPackage(
     }),
   });
 
-  await tebexFetch(`/accounts/${TEBEX_TOKEN}/baskets/${basket.ident}/packages`, {
+await tebexFetch(`/baskets/${basket.ident}/packages`, {
     method: "POST",
     body: JSON.stringify({ package_id: packageId, quantity: 1 }),
   });
