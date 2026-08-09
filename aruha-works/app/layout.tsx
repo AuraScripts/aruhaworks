@@ -1,0 +1,42 @@
+import type { Metadata } from "next";
+import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
+import "./globals.css";
+import { CartProvider } from "@/components/CartContext";
+
+const display = Space_Grotesk({
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+  variable: "--font-display",
+});
+
+const body = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-body",
+});
+
+const mono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-mono",
+});
+
+export const metadata: Metadata = {
+  title: "ARUHA WORKS — FiveM Scripts, Engineered",
+  description:
+    "Precision-built FiveM scripts and systems for QBCore, ESX, and Qbox. Documented, maintained, and built to spec.",
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en" className={`${display.variable} ${body.variable} ${mono.variable}`}>
+      <body className="font-body antialiased">
+        <CartProvider>{children}</CartProvider>
+      </body>
+    </html>
+  );
+}
