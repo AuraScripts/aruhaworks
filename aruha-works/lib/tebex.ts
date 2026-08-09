@@ -95,16 +95,28 @@ export async function createBasket(
  * ident.tebex.io). Most game-server stores require the customer to
  * authenticate before any package can be added. Returns an empty array
  * for stores that don't require login.
+ *
+ * NOTE: unlike every other Headless API endpoint, /auth returns the array
+ * directly instead of wrapping it in { data: [...] } — so this can't reuse
+ * tebexFetch(), which always unwraps `.data`.
  */
 export async function getBasketAuthLinks(
   basketIdent: string,
   returnUrl: string
 ): Promise<{ name: string; url: string }[]> {
-  return tebexFetch<{ name: string; url: string }[]>(
-    `/accounts/${TEBEX_TOKEN}/baskets/${basketIdent}/auth?returnUrl=${encodeURIComponent(
+  const res = await fetch(
+    `${TEBEX_BASE}/accounts/${TEBEX_TOKEN}/baskets/${basketIdent}/auth?returnUrl=${encodeURIComponent(
       returnUrl
-    )}`
+    )}`,
+    { headers: { Accept: "application/json" }, cache: "no-store" }
   );
+
+  if (!res.ok) {
+    const body = await res.text().catch(() => "");
+    throw new Error(`Tebex auth lookup failed: ${res.status} ${body}`);
+  }
+
+  return res.json();
 }
 
 /** Adds a package to an (already-authorized) basket and returns the checkout URL. */
