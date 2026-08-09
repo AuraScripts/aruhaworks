@@ -5,24 +5,24 @@ import { StarIcon } from "./icons";
 
 const REVIEWS = [
   {
-    text: "Cleanest install docs I've seen for a FiveM script. Up and running in ten minutes.",
-    from: "MrLuk1ss",
-    role: "Server Owner, 400+ pop",
+    text: "Aruha made me a few works already and they look amazing, I really didn't expect them to be that good, but for the price that he made them, they are very great, I reccomend ordering something from him, the job is fast, well fixed and finished with no flaws. Hard work done right.",
+    from: "pasiklydez",
+    role: "Server Owner",
   },
   {
-    text: "Support actually answers instead of pointing at a wiki. Fixed a conflict same day.",
-    from: "aurascripts",
-    role: "Community Dev",
+    text: "Good developer—skilled, knows what he's doing. Great job.",
+    from: "Anonymous",
+    role: "Fivem Admin",
   },
   {
-    text: "Swapped three separate scripts for one ARUHA system. Performance difference is night and day.",
-    from: "RedStrike",
-    role: "Roleplay Admin",
+    text: "High-quality resources, fast support, and a polite person.",
+    from: "tripertriper",
+    role: "Server Owner",
   },
   {
-    text: "Every update note reads like a real changelog, not a surprise. That alone is rare.",
-    from: "Itzblackpanther",
-    role: "Framework Maintainer",
+    text: "High-quality FiveM resources, clean code, and modern design. Everything runs smoothly, is well-optimized, and is user-friendly. It is evident that great attention is paid to detail and quality. I highly recommend Aruha Works—the work is done professionally, and the results speak for themselves. I wish you continued success in expanding your projects and reaching even more people.",
+    from: "enolizmas",
+    role: "Server Owner",
   },
 ];
 
