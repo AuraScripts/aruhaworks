@@ -51,8 +51,9 @@ export default function BuyButton({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ packageId }),
       });
-      if (!res.ok) throw new Error("basket creation failed");
-      const { ident } = await res.json();
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "basket creation failed");
+      const { ident } = data;
 
       await loadCheckoutScript();
       window.Tebex?.checkout.init({ ident, popup: true });
