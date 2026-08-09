@@ -101,7 +101,9 @@ export async function getBasketAuthLinks(
   returnUrl: string
 ): Promise<{ name: string; url: string }[]> {
   return tebexFetch<{ name: string; url: string }[]>(
-    `/baskets/${basketIdent}/auth?returnUrl=${encodeURIComponent(returnUrl)}`
+    `/accounts/${TEBEX_TOKEN}/baskets/${basketIdent}/auth?returnUrl=${encodeURIComponent(
+      returnUrl
+    )}`
   );
 }
 
