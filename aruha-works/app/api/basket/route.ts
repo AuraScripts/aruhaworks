@@ -15,6 +15,9 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ident, checkoutUrl });
   } catch (err) {
     console.error(err);
-    return NextResponse.json({ error: "Could not create basket" }, { status: 502 });
+    const message = err instanceof Error ? err.message : "Could not create basket";
+    // TEMP: exposing the real Tebex error for debugging. Safe to narrow this
+    // back down to a generic message once checkout is confirmed working.
+    return NextResponse.json({ error: message }, { status: 502 });
   }
 }
