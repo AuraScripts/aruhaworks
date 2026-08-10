@@ -7,6 +7,21 @@ import Footer from "@/components/Footer";
 import ProductActions from "@/components/ProductActions";
 import { getPackage, formatPrice, parseFrameworkTags } from "@/lib/tebex";
 
+/**
+ * Tebex package descriptions can come through as raw HTML/Markdown
+ * (e.g. wrapped in a stray <p> tag with **bold** markers left in). Strip
+ * the HTML tags and convert basic **bold** markers to <strong> so it
+ * renders cleanly instead of showing the literal tags/asterisks.
+ */
+function renderDescription(raw: string) {
+  const withoutTags = raw.replace(/<\/?[^>]+(>|$)/g, "");
+  const withBold = withoutTags.replace(
+    /\*\*(.+?)\*\*/g,
+    "<strong>$1</strong>"
+  );
+  return { __html: withBold.trim() };
+}
+
 export default async function ProductPage({
   params,
 }: {
@@ -34,7 +49,7 @@ export default async function ProductPage({
           <div className="bracket-frame border border-line bg-raised">
             <span className="bracket-bl" aria-hidden />
             <span className="bracket-br" aria-hidden />
-            <div className="relative aspect-[4/3] w-full bg-ink">
+            <div className="relative aspect-[16/9] w-full bg-ink">
               {pkg.image ? (
                 <Image src={pkg.image} alt={pkg.name} fill className="object-cover" sizes="50vw" />
               ) : (
@@ -66,9 +81,10 @@ export default async function ProductPage({
               </div>
             )}
 
-            <p className="mt-6 max-w-lg text-base leading-relaxed text-dim">
-              {pkg.description}
-            </p>
+            <p
+              className="mt-6 max-w-lg text-base leading-relaxed text-dim"
+              dangerouslySetInnerHTML={renderDescription(pkg.description)}
+            />
 
             <div className="mt-8 border border-line bg-raised p-6">
               <p className="font-mono text-xs uppercase tracking-widest2 text-dim">
