@@ -175,6 +175,21 @@ export async function addPackageAndGetCheckout(
   basketIdent: string,
   packageId: number
 ): Promise<{ checkoutUrl: string }> {
+  // Many packages (licenses/scripts) have disable_quantity set, meaning
+  // Tebex only allows quantity 1 in the basket ever. POSTing the same
+  // package again tries to bump 1 -> 2 and Tebex rejects it with
+  // "Quantity cannot be greater than 1". So check first: if it's already
+  // in the basket, don't add it again — just hand back the existing
+  // checkout link.
+  const currentBasket = await getBasket(basketIdent);
+  const alreadyInBasket = currentBasket.packages.some(
+    (p) => p.id === packageId
+  );
+
+  if (alreadyInBasket) {
+    return { checkoutUrl: currentBasket.links.checkout! };
+  }
+
   const basket = await tebexFetch<{ links: { checkout: string } }>(
     `/baskets/${basketIdent}/packages`,
     {
