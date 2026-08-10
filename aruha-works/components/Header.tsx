@@ -23,7 +23,7 @@ const NAV = [
 const SOCIALS = [
   { Icon: InstagramIcon, href: "https://instagram.com", label: "Instagram" },
   { Icon: YoutubeIcon, href: "https://youtube.com", label: "YouTube" },
-  { Icon: DiscordIcon, href: "https://discord.com", label: "Discord" },
+  { Icon: DiscordIcon, href: "https://discord.gg/tT4u7Bbn9q", label: "Discord" },
   { Icon: TiktokIcon, href: "https://tiktok.com", label: "TikTok" },
 ];
 
