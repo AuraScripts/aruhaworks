@@ -45,7 +45,7 @@ export default function Hero() {
               Discover Our Scripts →
             </a>
             <a
-              href="https://discord.com"
+              href="https://discord.gg/tT4u7Bbn9q"
               target="_blank"
               rel="noreferrer"
               className="border border-line px-6 py-3 font-mono text-xs uppercase tracking-widest2 text-dim transition-colors hover:border-paper hover:text-paper"
