@@ -57,7 +57,7 @@ export default function BestSelling({ packages }: { packages: TebexPackage[] }) 
                 className="group w-[280px] shrink-0 border border-line bg-raised transition-all duration-200 hover:-translate-y-1 hover:border-paper/50"
               >
                 <Link href={`/product/${pkg.id}`} className="block">
-                  <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-line bg-ink">
+                  <div className="relative aspect-[16/9] w-full overflow-hidden border-b border-line bg-ink">
                     {pkg.image ? (
                       <Image
                         src={pkg.image}
