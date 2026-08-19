@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 
 const SALE_END = new Date("2026-08-25T23:59:59Z").getTime();
-const CODE = "SUMMER40";
-const DISCOUNT = "40%";
+const CODE = "NEWTEBEX10";
+const DISCOUNT = "10%";
 
 function useCountdown(target: number) {
   const [now, setNow] = useState(Date.now());
@@ -38,7 +38,7 @@ export default function AnnouncementBar() {
     <div className="relative z-50 border-b border-border bg-white text-black">
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-6 gap-y-2 px-4 py-2.5 text-sm sm:justify-between">
         <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
-          <span className="font-semibold">Summer Discount — {DISCOUNT} off everything</span>
+          <span className="font-semibold">New Tebex Shop Discount — {DISCOUNT} off everything</span>
           <button
             onClick={copyCode}
             className="inline-flex items-center gap-1.5 rounded bg-black px-2.5 py-0.5 font-mono text-xs font-medium text-white transition hover:bg-black/80"
